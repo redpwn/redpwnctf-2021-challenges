@@ -1,0 +1,38 @@
+name: requester-strikes-back
+author: Jim
+description: |-
+  Java was found to not be the future. Can you take down requester again?
+
+  Site: {{link}}
+flag: flag{TYp0_InsTEad_0F_JAvA_uRl_M4dN3ss_92643}
+
+provide:
+  - ./requester-strikes-back.zip
+
+containers:
+  app:
+    build: ./app
+    resources:
+      limits:
+        cpu: 100m
+        memory: 500M
+    environment:
+        adminUser: 'rpadmin'
+        adminPassword: 'rppasswordF5pO8PM4xUuTshzkSRRQ'
+        flag: 'flag{TYp0_InsTEad_0F_JAvA_uRl_M4dN3ss_92643}'
+    ports: [8080]
+  couchdb:
+    image: couchdb:3.1
+    resources:
+      limits:
+        cpu: 100m
+        memory: 500M
+    environment:
+        COUCHDB_USER: 'rpadmin'
+        COUCHDB_PASSWORD: 'rppasswordF5pO8PM4xUuTshzkSRRQ'
+    ports: [5984]
+
+expose:
+  app:
+    - target: 8080
+      http: requester-strikes-back

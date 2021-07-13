@@ -1,0 +1,23 @@
+FROM python:3.9.2-slim-buster
+
+RUN pip install flask gunicorn --no-cache-dir
+
+WORKDIR /app
+COPY app/app.py ./
+COPY app/static/ ./static/
+COPY app/templates/ ./templates/
+
+WORKDIR /sandbox
+COPY sandbox/app.py ./
+COPY sandbox/static/ ./static/
+
+RUN mkdir /db/ && \
+    chmod 1773 /db/
+
+ENV FLASK_KEY=cc66dec6262b70a5cbc1f17ad3b06dc9
+ENV SANDBOX_URL=http://sandbox.pastebin-3.cringe.edu:3000
+
+WORKDIR /
+
+CMD gunicorn -w4 -t5 --graceful-timeout 0 -unobody -gnogroup -b0.0.0.0:8000 --chdir /app app:app & \
+gunicorn -w4 -t5 --graceful-timeout 0 -unobody -gnogroup -b0.0.0.0:3000 --chdir /sandbox app:app

@@ -1,0 +1,11 @@
+name: pickled-onions
+description: |-
+  Kevin Higgs told me pickles can do anything!
+
+  ![lul](https://i.imgur.com/Qye6jEi.png)
+
+author: KyleForkBomb
+flag:
+  file: ./flag.txt
+provide:
+  - ./chall.py

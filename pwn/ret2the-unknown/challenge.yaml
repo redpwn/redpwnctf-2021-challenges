@@ -1,0 +1,38 @@
+name: ret2the-unknown
+author: pepsipu
+description: |-
+  hey, my company sponsored map doesn't show any location named "libc"!
+
+  `{{ nc }}`
+provide:
+  - ./bin/ret2the-unknown
+  - ./bin/ret2the-unknown.c
+  - ./libc-2.28.so
+  - ./ld-2.28.so
+flag:
+  file: ./bin/flag.txt
+
+containers:
+  main:
+    build: .
+    replicas: 2
+    ports:
+      - 5000
+    securityContext:
+      capabilities:
+        drop:
+          - all
+        add:
+          - chown
+          - setuid
+          - setgid
+          - sys_admin
+    k8s:
+      deployment:
+        annotations:
+          container.apparmor.security.beta.kubernetes.io/main: unconfined
+
+expose:
+  main:
+    - target: 5000
+      tcp: 31568

@@ -1,0 +1,10 @@
+name: javaisez3
+author: ItzSomebody
+description: |-
+  3rd round of your local Java rev!
+  Note:  This requires Java 11 and above to run.
+
+flag: flag{d1d_y0u_kn0w?_chr1s_is_4_Hu_Tao_s1mp!_0715}
+
+provide:
+  - ./bin/javaisez3.jar

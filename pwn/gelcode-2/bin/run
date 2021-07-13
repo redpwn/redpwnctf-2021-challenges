@@ -1,0 +1,4 @@
+#!/bin/sh
+
+exec ./main $(./rctfgolf -u 'https://2021.redpwn.net/' -c 'gelcode-2' -f 'int(min((elapsed.Minutes() * 950 / (72 * 60)) + 50, 1000))')
+# exec ./main $(./rctfgolf -u 'http://172.17.0.1:8080/' -c 'gelcode-2' -f 'int(min((elapsed.Minutes() * 950 / (72 * 60)) + 50, 1000))')

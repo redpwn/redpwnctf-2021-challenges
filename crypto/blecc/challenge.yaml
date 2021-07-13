@@ -1,0 +1,8 @@
+name: blecc
+author: AdnanSlef
+description: |-
+        Blecc! What are all these numbers? This doesn't look like RSA...
+provide:
+        - ./blecc.txt
+flag:
+        file: ./flag.txt

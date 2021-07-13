@@ -1,0 +1,8 @@
+name: discord
+author: BrownieInMotion
+description: |-
+  Join the [discord](https://pwn.red/discord)! I hear `#rules` is an incredibly engaging read.
+
+flag: flag{chall3n63_au7h0r5h1p_1nfl4710n}
+value: 1
+tiebreakEligible: false

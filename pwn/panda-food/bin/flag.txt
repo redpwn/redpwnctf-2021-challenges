@@ -1,0 +1,1 @@
+flag{hijacking_vtables_like_321_4243f93}

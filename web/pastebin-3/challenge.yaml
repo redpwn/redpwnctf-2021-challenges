@@ -1,0 +1,36 @@
+name: pastebin-3
+author: BrownieInMotion
+description: |-
+  Boy, there sure are a lot of pastebins. Gotta think of new themes...
+
+  [pastebin-3.mc.ax](https://pastebin-3.mc.ax)
+
+  _Please put a reasonably secure password when making an account_
+
+  [Admin bot](https://admin-bot.mc.ax/pastebin-3)
+provide:
+  - pastebin-3.tar.gz
+flag: flag{c00k13_b0mb1n6_15_f4k3_vuln}
+
+containers:
+  main:
+    build: .
+    ports:
+      - 3000
+      - 8000
+    resources:
+      limits:
+        cpu: 300m
+        memory: 500Mi
+      requests:
+        cpu: 50m
+        memory: 500Mi
+
+expose:
+  main:
+  - target: 8000
+    http:
+      raw: pastebin-3.mc.ax
+  - target: 3000
+    http:
+      raw: sandbox.pastebin-3.mc.ax

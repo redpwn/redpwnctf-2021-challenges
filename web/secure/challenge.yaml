@@ -1,0 +1,21 @@
+name: secure
+author: BrownieInMotion
+description: |-
+  Just learned about encryption—now, my website is unhackable!
+
+  {{ link }}
+
+provide:
+  - ./index.js
+flag: flag{50m37h1n6_50m37h1n6_cl13n7_n07_600d}
+
+containers:
+  main:
+    build: .
+    ports:
+      - 3000
+
+expose:
+  main:
+    - target: 3000
+      http: secure

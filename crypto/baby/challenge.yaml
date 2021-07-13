@@ -1,0 +1,8 @@
+name: baby
+author: EvilMuffinHa
+description: |-
+  I want to do an RSA!
+
+flag: flag{68ab82df34}
+provide:
+  - output.txt

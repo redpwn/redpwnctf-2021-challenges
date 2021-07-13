@@ -1,0 +1,23 @@
+name: notes
+author: BrownieInMotion
+description: |-
+  Texting things to yourself, but online! {{ link }}
+
+  _Please put a reasonably secure password when making an account_
+
+  Report problems [here](https://admin-bot.mc.ax/notes).
+
+provide:
+  - notes.tar.gz
+flag: flag{w0w_4n07h3r_60lf1n6_ch4ll3n63}
+
+containers:
+  main:
+    build: .
+    ports:
+      - 3000
+
+expose:
+  main:
+  - target: 3000
+    http: notes

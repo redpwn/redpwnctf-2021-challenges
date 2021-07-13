@@ -1,0 +1,7 @@
+*
+!/Dockerfile
+!/hook.sh
+!/bin/run
+!/bin/main
+!/bin/flag.txt
+!/libc.tar.gz

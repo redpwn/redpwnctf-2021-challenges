@@ -1,0 +1,37 @@
+name: bread-making
+description: |-
+  My parents aren't home! Quick, help me make some bread please...
+
+  `{{ nc }}`
+
+author: KyleForkBomb
+flag:
+  file: bin/flag.txt
+provide:
+  - file: bin/main
+    as: bread
+
+containers:
+  main:
+    build: .
+    replicas: 2
+    ports:
+      - 5000
+    securityContext:
+      capabilities:
+        drop:
+          - all
+        add:
+          - chown
+          - setuid
+          - setgid
+          - sys_admin
+    k8s:
+      deployment:
+        annotations:
+          container.apparmor.security.beta.kubernetes.io/main: unconfined
+
+expose:
+  main:
+    - target: 5000
+      tcp: 31796

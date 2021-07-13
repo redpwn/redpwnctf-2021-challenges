@@ -1,0 +1,25 @@
+name: wtjs
+author: asphyxia
+description: |-
+  Ya like golf? How about JS golf?
+
+  {{ link }}
+
+  [Admin bot](https://admin-bot.mc.ax/wtjs)
+
+flag: flag{n0t_qu1t3_jsf*ck_but_cl0s3_3n0ugh}
+
+provide:
+  - wtjs.tar
+
+containers:
+  main:
+    build: src
+    ports: [8080]
+    environment:
+      PORT: '8080'
+
+expose:
+  main:
+    - target: 8080
+      http: wtjs

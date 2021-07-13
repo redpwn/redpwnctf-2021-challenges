@@ -1,0 +1,6 @@
+*
+!/app
+!/sandbox
+!/entrypoint.sh
+!/init.py
+!/Dockerfile

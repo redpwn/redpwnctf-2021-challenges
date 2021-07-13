@@ -1,0 +1,18 @@
+name: inspect-me
+author: NotDeGhost
+description: |-
+  See if you can find the flag in the source code!
+
+  {{ link }}
+
+flag: flag{inspect_me_like_123}
+
+containers:
+  main:
+    build: .
+    ports: [80]
+
+expose:
+  main:
+    - target: 80
+      http: inspect-me

@@ -1,0 +1,23 @@
+name: pastebin-2-social-edition
+author: BrownieInMotion
+description: |-
+  Pastebin, now with comments.
+  Send cool stuff to the admin! If they like it, they might even leave you a note.
+
+  {{ link }}
+
+  [Admin bot](https://admin-bot.mc.ax/pastebin-2-social-edition)
+provide:
+  - pastebin-2.tar.gz
+flag: flag{m4yb3_ju57_a_l177l3_5u5p1c10u5}
+
+containers:
+  main:
+    build: .
+    ports:
+      - 3000
+
+expose:
+  main:
+  - target: 3000
+    http: pastebin-2-social-edition

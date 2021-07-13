@@ -1,0 +1,81 @@
+docker:
+  image:
+    prefix: gcr.io/redpwnctf/ctf/2021
+
+flagFormat: flag\{[ -z|~]+\}
+
+defaults:
+  containers:
+    resources:
+      limits:
+        cpu: 100m
+        memory: 150Mi
+      requests:
+        cpu: 25m
+        memory: 50Mi
+  sortOrder: -100
+
+backends:
+- resolve: k8s
+  options:
+    kubeContext: gke_redpwnctf_us-east1-b_ctf-2021-challs
+    domain: mc.ax
+    annotations:
+      ingress:
+        traefik.ingress.kubernetes.io/router.tls: "true"
+        traefik.ingress.kubernetes.io/router.middlewares: "ingress-nocontenttype@kubernetescrd"
+- resolve: rctf
+  options:
+    scoring:
+      minPoints: 100
+      maxPoints: 500
+    sortOrder:
+      - sanity-check
+      - discord
+      - compliant-lattice-feline
+      - scissor
+      - inspect-me
+      - baby
+      - wstrings
+      - orm-bad
+      - beginner-generic-pwn-number-0
+      - bread-making
+      - pastebin-1
+      - ret2generic-flag-reader
+      - round-the-bases
+      - secure
+      - printf-please
+      - annabel-lee
+      - blecc
+      - notes
+      - ret2the-unknown
+      - dimensionality
+      - pastebin-2-social-edition
+      - cool
+      - simultaneity
+      - 2k
+      - empires
+      - yahtzee
+      - panda-food
+      - requester
+      - retrosign
+      - wtjs
+      - image-identifier
+      - devnull-as-a-service
+      - pickled-onions
+      - quaternion-revenge
+      - pastebin-3
+      - scrambled-elgs
+      - mdbin
+      - gelcode-2
+      - the-substitution-game
+      - javaisez3
+      - rp2sm-rev
+      - deserts
+      - rp2sm-pwn
+      - lazy-admin
+      # Misc
+      # Crypto
+      # Web
+      # Rev
+      # Pwn

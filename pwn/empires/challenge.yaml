@@ -1,0 +1,9 @@
+name: empires
+author: NotDeGhost
+description: |-
+  I met a [traveller](https://empires.mc.ax/submit) from an [antique land](https://static.redpwn.net/admin-bot/chromium-q7rn3kvwgmv8vth7.tar.bz2).
+
+  Note that this is a two part challenge. The second part is `Deserts`. 
+provide:
+  - ./chall.tar.gz
+flag: flag{c1vili53d_man_ha5_march3d_3qHD1}

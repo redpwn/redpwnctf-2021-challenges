@@ -1,0 +1,34 @@
+name: yahtzee
+author: AdnanSlef
+description: |-
+  Pseudo-random number generators are weak! I use only true RNGs, like rolling a set of dice!
+
+  `{{ nc }}`
+provide:
+  - ./server.py
+flag:
+  file: ./flag.txt
+containers:
+  main:
+    build: .
+    replicas: 2
+    ports:
+      - 5000
+    securityContext:
+      capabilities:
+        drop:
+          - all
+        add:
+          - chown
+          - setuid
+          - setgid
+          - sys_admin
+    k8s:
+      deployment:
+        annotations:
+          container.apparmor.security.beta.kubernetes.io/main: unconfined
+
+expose:
+  main:
+    - target: 5000
+      tcp: 31076

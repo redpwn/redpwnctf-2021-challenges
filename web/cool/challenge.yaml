@@ -1,0 +1,27 @@
+name: cool
+author: Arinerron, BrownieInMotion
+description: |-
+  Aaron has a message for the cool kids.
+  For support, DM BrownieInMotion.
+  
+  {{ link }}
+
+provide:
+  - ./app.py
+flag: flag{44r0n_s4ys_s08r137y_1s_c00l}
+
+containers:
+  main:
+    build: .
+    ports:
+      - 8000
+    resources:
+      limits:
+        memory: 250Mi
+      requests:
+        memory: 250Mi
+
+expose:
+  main:
+  - target: 8000
+    http: cool

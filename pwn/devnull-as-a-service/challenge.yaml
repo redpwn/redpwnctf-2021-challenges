@@ -1,0 +1,46 @@
+name: devnull-as-a-service
+author: KyleForkBomb
+description: |-
+  You've heard of /dev/null as a service; now get ready for
+  /dev/null as a service, enterprise edition! Our custom
+  proprietary glibc (don't sue us) guarantees that your
+  data will be securely lost with no chance of being stolen
+  or leaked, 100% of the time.
+
+  You can send your shells to `/tmp/stdout`; see `run` for more
+  info. This challenge has a large POW to discourage brute force.
+  Please play nice! Test locally and don't try to circumvent
+  the POW.
+
+  `{{ nc }}`
+provide:
+  - file: bin/main
+    as: devnull
+  - bin/run
+flag:
+  file: ./bin/flag.txt
+
+containers:
+  main:
+    build: .
+    replicas: 2
+    ports:
+      - 5000
+    securityContext:
+      capabilities:
+        drop:
+          - all
+        add:
+          - chown
+          - setuid
+          - setgid
+          - sys_admin
+    k8s:
+      deployment:
+        annotations:
+          container.apparmor.security.beta.kubernetes.io/main: unconfined
+
+expose:
+  main:
+    - target: 5000
+      tcp: 31173

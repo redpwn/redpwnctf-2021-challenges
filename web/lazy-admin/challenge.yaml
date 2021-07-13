@@ -1,0 +1,22 @@
+name: lazy-admin
+author: BrownieInMotion
+description: |-
+  Looks like another service with no functionality. I hope the admin is doing their job...
+
+  {{ link }}
+
+provide:
+  - lazy-admin.tar.gz
+flag: flag{d15c0rd_b07_n07_r34lly_n3c3554ry}
+
+
+containers:
+  main:
+    build: .
+    ports:
+      - 80
+
+expose:
+  main:
+  - target: 80
+    http: lazy-admin

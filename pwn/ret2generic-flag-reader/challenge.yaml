@@ -1,0 +1,36 @@
+name: ret2generic-flag-reader
+author: pepsipu
+description: |-
+  i'll ace this board meeting with my new original challenge!
+
+  `{{ nc }}`
+provide:
+  - ./bin/ret2generic-flag-reader
+  - ./bin/ret2generic-flag-reader.c
+flag:
+  file: ./bin/flag.txt
+
+containers:
+  main:
+    build: .
+    replicas: 2
+    ports:
+      - 5000
+    securityContext:
+      capabilities:
+        drop:
+          - all
+        add:
+          - chown
+          - setuid
+          - setgid
+          - sys_admin
+    k8s:
+      deployment:
+        annotations:
+          container.apparmor.security.beta.kubernetes.io/main: unconfined
+
+expose:
+  main:
+    - target: 5000
+      tcp: 31077

@@ -1,0 +1,9 @@
+name: scrambled-elgs
+author: AdnanSlef
+description: |-
+        My elgs have been scrambled! I hope that makes them more secure...
+provide:
+        - ./generator.sage
+        - ./output.json
+flag:
+        file: ./flag.txt

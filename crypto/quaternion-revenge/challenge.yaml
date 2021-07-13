@@ -1,0 +1,30 @@
+name: quaternion-revenge
+author: AdnanSlef
+description: |-
+  Those sure are some quirky quaternions. See if you can identify some surprising behavior.
+  Note - Please test your solution locally and don't DoS the box :lemon:
+
+  `{{ nc }}`
+provide:
+  - ./server.sage
+flag:
+  file: ./flag.txt
+
+containers:
+  main:
+    build: .
+    replicas: 2
+    ports:
+      - 9999
+    resources:
+      limits:
+        cpu: 100m
+        memory: 200Mi
+      requests:
+        cpu: 20m
+        memory: 120Mi
+expose:
+  main:
+    - target: 9999
+      tcp: 31868
+

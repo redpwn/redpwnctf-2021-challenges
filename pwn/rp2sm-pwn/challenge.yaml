@@ -1,0 +1,11 @@
+name: rp2sm
+author: asphyxia
+description: |-
+  Part 2 of 2
+
+  The flag for this part is in `flag2.txt`.
+
+  You already have everything you need from part 1 (rev/rp2sm).
+
+flag:
+  file: flag2.txt

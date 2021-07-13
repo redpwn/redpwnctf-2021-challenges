@@ -1,0 +1,24 @@
+name: orm-bad
+author: ra
+description: |-
+  I just learned about orms today! They seem kinda difficult to implement though...
+  Guess I'll stick to good old raw sql statements!
+
+  {{ link }}
+
+provide:
+  - app.js
+
+flag: flag{sqli_overused_again_0b4f6}
+
+containers:
+  main:
+    build: .
+    ports: [80]
+    environment:
+      FLAG: flag{sqli_overused_again_0b4f6}
+
+expose:
+  main:
+    - target: 80
+      http: orm-bad

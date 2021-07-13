@@ -1,0 +1,39 @@
+name: simultaneity
+author: asphyxia
+description: |-
+  Just an instant remains before the world comes to an end...
+
+  `{{nc}}`
+
+provide:
+  - ./chall/simultaneity
+  - ./chall/lib/libc.so.6
+  - ./chall/lib/ld-linux-x86-64.so.2
+
+flag:
+  file: ./chall/flag.txt
+
+containers:
+  main:
+    build: .
+    replicas: 2
+    ports:
+      - 5000
+    securityContext:
+      capabilities:
+        drop:
+          - all
+        add:
+          - chown
+          - setuid
+          - setgid
+          - sys_admin
+    k8s:
+      deployment:
+        annotations:
+          container.apparmor.security.beta.kubernetes.io/main: unconfined
+
+expose:
+  main:
+    - target: 5000
+      tcp: 31547

@@ -1,0 +1,161 @@
+; vim: ft=nasm
+
+%macro nop 0
+    db 0x00
+%endmacro
+
+%macro dup 0
+    db 0x01
+%endmacro
+
+%macro dsc 0
+    db 0x02
+%endmacro
+
+%macro exit 1
+    db 0x22
+    db %1
+    db 0x00
+    db 0x03
+%endmacro
+
+%macro add 0
+    db 0x10
+%endmacro
+
+%macro sub 0
+    db 0x11
+%endmacro
+
+%macro mul 0
+    db 0x12
+%endmacro
+
+%macro div 0
+    db 0x13
+%endmacro
+
+%macro mod 0
+    db 0x14
+%endmacro
+
+%macro mmd 0
+    db 0x15
+%endmacro
+
+%macro mmod 1
+    load %1
+    mmd
+%endmacro
+
+%macro neq 0
+    db 0x16
+%endmacro
+
+%macro sig 0
+    db 0x17
+%endmacro
+
+%macro in 0
+    db 0x20
+%endmacro
+
+%macro out 0
+    db 0x21
+%endmacro
+
+%macro load 1
+    db 0x22
+    dw %1
+%endmacro
+
+%macro print 1
+    load %1
+    out
+%endmacro
+
+%macro jump 1
+    load %1
+    db 0x30
+%endmacro
+
+%macro jiz 1
+    load %1
+    db 0x31
+%endmacro
+
+%macro jnz 1
+    load %1
+    db 0x32
+%endmacro
+
+%macro jlt 1
+    load %1
+    db 0x33
+%endmacro
+
+%macro jgt 1
+    load %1
+    db 0x34
+%endmacro
+
+%macro jle 1
+    load %1
+    db 0x35
+%endmacro
+
+%macro jge 1
+    load %1
+    db 0x36
+%endmacro
+
+%macro sto 0
+    db 0x40
+%endmacro
+
+%macro stor 1
+    load %1
+    db 0x40
+%endmacro
+
+%macro store 2
+    ims %1
+    stor %2
+%endmacro
+
+%macro ret 0
+    db 0x41
+%endmacro
+
+%macro return 1
+    ims %1
+    ret
+    dms %1
+%endmacro
+
+%macro imp 0
+    db 0x50
+%endmacro
+
+%macro dmp 0
+    db 0x51
+%endmacro
+
+%macro ims 1
+    load %1
+    db 0x52
+%endmacro
+
+%macro dms 1
+    load %1
+    db 0x53
+%endmacro
+
+%macro loadinp 0
+    load 0x0020
+    in
+    sub
+    sto
+    imp
+%endmacro
+

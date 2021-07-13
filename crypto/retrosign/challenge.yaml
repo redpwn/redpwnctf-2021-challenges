@@ -1,0 +1,34 @@
+name: retrosign
+author: AdnanSlef
+description: |-
+  Wait, I'm not sure that's what signature-based intrusion detection means...
+
+  `{{ nc }}`
+provide:
+  - ./server.py
+flag:
+  file: ./flag.txt
+containers:
+  main:
+    build: .
+    replicas: 2
+    ports:
+      - 5000
+    securityContext:
+      capabilities:
+        drop:
+          - all
+        add:
+          - chown
+          - setuid
+          - setgid
+          - sys_admin
+    k8s:
+      deployment:
+        annotations:
+          container.apparmor.security.beta.kubernetes.io/main: unconfined
+
+expose:
+  main:
+    - target: 5000
+      tcp: 31079

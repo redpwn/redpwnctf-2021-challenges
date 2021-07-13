@@ -1,0 +1,22 @@
+name: pastebin-1
+author: BrownieInMotion
+description: |-
+  Ah, the classic pastebin. Can you get the admin's cookies?
+
+  {{ link }}
+
+  [Admin bot](https://admin-bot.mc.ax/pastebin-1)
+provide:
+  - src/main.rs
+flag: flag{d1dn7_n33d_70_b3_1n_ru57}
+
+containers:
+  main:
+    build: .
+    ports:
+      - 3000
+
+expose:
+  main:
+  - target: 3000
+    http: pastebin-1

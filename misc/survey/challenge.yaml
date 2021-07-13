@@ -1,0 +1,12 @@
+name: survey
+author: redpwnCTF
+description: |-
+  Thanks for playing redpwnCTF 2021! As we near the end of our competition, we'd greatly appreciate it if you could complete [a survey](https://forms.gle/AX4WEF9Wr8gpqU1T7) to share some feedback!
+
+  Also, a message from our sponsors. If you have a [HackerOne](https://hackerone.com/) account (it's not too late to make one), fill out [this survey](https://forms.gle/zXYSqzTS15dAQxwC6) for a chance to be invited to a private bug bounty program!
+
+  Note that this challenge will not affect time-based tiebreaks. 
+
+flag: flag{thank5_f0r_play1ng_r3dpwnctf_2021!_zc9e848yg2gdhwxz}
+value: 1
+tiebreakEligible: false

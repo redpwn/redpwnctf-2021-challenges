@@ -1,0 +1,38 @@
+name: Requester
+author: Jim
+description: |-
+  Java is the future. Strictly typed, extremeley secure, and the most modern frameworks all come together to make an unhackable service. - Nobody 2021
+  
+  Site: {{link}}
+flag: flag{JaVA_tHE_GrEAteST_WeB_lANguAge_32154}
+
+provide:
+  - ./requester-release.zip
+
+containers:
+  app:
+    build: ./app
+    resources:
+      limits:
+        cpu: 100m
+        memory: 500M
+    environment:
+        adminUser: 'rpadmin'
+        adminPassword: 'rppassword6ff69WQGTZe0SJLhg4Jw'
+        flag: 'flag{JaVA_tHE_GrEAteST_WeB_lANguAge_32154}'
+    ports: [8080]
+  couchdb:
+    image: couchdb:3.1
+    resources:
+      limits:
+        cpu: 100m
+        memory: 500M
+    environment:
+        COUCHDB_USER: 'rpadmin'
+        COUCHDB_PASSWORD: 'rppassword6ff69WQGTZe0SJLhg4Jw'
+    ports: [5984]
+
+expose:
+  app:
+    - target: 8080
+      http: requester

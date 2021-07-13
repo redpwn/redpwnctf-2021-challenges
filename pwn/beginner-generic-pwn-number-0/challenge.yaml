@@ -1,0 +1,36 @@
+name: beginner-generic-pwn-number-0
+author: pepsipu
+description: |-
+  rob keeps making me write beginner pwn! i'll show him...
+
+  `{{ nc }}`
+provide:
+- ./bin/beginner-generic-pwn-number-0
+- ./bin/beginner-generic-pwn-number-0.c
+flag:
+  file: ./bin/flag.txt
+
+containers:
+  main:
+    build: .
+    replicas: 2
+    ports:
+      - 5000
+    securityContext:
+      capabilities:
+        drop:
+          - all
+        add:
+          - chown
+          - setuid
+          - setgid
+          - sys_admin
+    k8s:
+      deployment:
+        annotations:
+          container.apparmor.security.beta.kubernetes.io/main: unconfined
+
+expose:
+  main:
+    - target: 5000
+      tcp: 31199

@@ -1,0 +1,27 @@
+name: MdBin
+author: asphyxia
+description: |-
+  Need a nice, customizable pastebin service for all those markdown notes you
+  need to share? Look no further! Powered by the latest in Web Technologies™,
+  including React, this pastebin has you covered, with brand-new theming
+  support!
+
+  {{ link }}
+
+  Submit to the admin at [admin-bot.mc.ax/mdbin](https://admin-bot.mc.ax/mdbin);
+  the flag is in a cookie.
+
+flag: flag{d1d_y0u_kn0w_unified_cr4sh3s_1mm3di4t3ly_0n_p0llut10n?}
+
+provide:
+  - mdbin.tar.gz
+
+containers:
+  main:
+    build: source
+    ports: [80]
+
+expose:
+  main:
+    - target: 80
+      http: mdbin

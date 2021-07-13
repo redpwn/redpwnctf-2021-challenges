@@ -1,0 +1,40 @@
+name: rp2sm
+author: asphyxia
+description: |-
+  Part 1 of 2
+
+  The flag for this part is in `flag1.txt`.
+
+  `{{nc}}`
+
+provide:
+  - file: dist.tar
+    as: rp2sm.tar
+
+flag:
+  file: rp2sm/flag1.txt
+
+containers:
+  main:
+    build: rp2sm
+    replicas: 2
+    ports:
+      - 5000
+    securityContext:
+      capabilities:
+        drop:
+          - all
+        add:
+          - chown
+          - setuid
+          - setgid
+          - sys_admin
+    k8s:
+      deployment:
+        annotations:
+          container.apparmor.security.beta.kubernetes.io/main: unconfined
+
+expose:
+  main:
+    - target: 5000
+      tcp: 31802

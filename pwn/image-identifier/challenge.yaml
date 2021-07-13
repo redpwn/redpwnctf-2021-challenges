@@ -1,0 +1,36 @@
+name: image-identifier
+author: greenBeans
+description: |-
+  yummy homebrewed image library
+
+  `{{ nc }}`
+provide:
+  - ./bin/chal
+  - ./Dockerfile
+flag:
+  file: ./bin/flag.txt
+
+containers:
+  main:
+    build: .
+    replicas: 2
+    ports:
+      - 5000
+    securityContext:
+      capabilities:
+        drop:
+          - all
+        add:
+          - chown
+          - setuid
+          - setgid
+          - sys_admin
+    k8s:
+      deployment:
+        annotations:
+          container.apparmor.security.beta.kubernetes.io/main: unconfined
+
+expose:
+  main:
+    - target: 5000
+      tcp: 31412

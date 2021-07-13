@@ -1,0 +1,33 @@
+name: the-substitution-game
+author: BrownieInMotion
+description: |-
+  `{{ nc }}`
+
+provide:
+  - ./chall.py
+flag: flag{wtf_tur1n9_c0mpl3t3}
+
+containers:
+  main:
+    build: .
+    replicas: 2
+    ports:
+      - 5000
+    securityContext:
+      capabilities:
+        drop:
+          - all
+        add:
+          - chown
+          - setuid
+          - setgid
+          - sys_admin
+    k8s:
+      deployment:
+        annotations:
+          container.apparmor.security.beta.kubernetes.io/main: unconfined
+
+expose:
+  main:
+    - target: 5000
+      tcp: 31996

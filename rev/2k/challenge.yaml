@@ -1,0 +1,32 @@
+name: 2k
+description: |-
+  `{{ nc }}`
+author: EvilMuffinHa
+flag:
+  file: ./flag.txt
+provide:
+  - ./chall
+  - ./prog.bin
+containers:
+  main:
+    build: .
+    replicas: 2
+    ports:
+      - 5000
+    securityContext:
+      capabilities:
+        drop:
+          - all
+        add:
+          - chown
+          - setuid
+          - setgid
+          - sys_admin
+    k8s:
+      deployment:
+        annotations:
+          container.apparmor.security.beta.kubernetes.io/main: unconfined
+expose:
+  main:
+    - target: 5000
+      tcp: 31361

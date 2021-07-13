@@ -1,0 +1,10 @@
+name: wstrings
+author: NotDeGhost
+description: |-
+  Some strings are wider than normal...
+
+flag: flag{n0t_al1_str1ngs_ar3_sk1nny}
+
+provide:
+  - file: ./bin/chall
+    as: wstrings

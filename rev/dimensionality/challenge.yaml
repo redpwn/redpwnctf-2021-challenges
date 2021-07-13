@@ -1,0 +1,7 @@
+name: dimensionality
+author: EvilMuffinHa, asphyxia
+description: |-
+  The more the merrier
+provide:
+  - ./chall
+flag: flag{star_/_so_bright_/_car_/_site_-ppsu}

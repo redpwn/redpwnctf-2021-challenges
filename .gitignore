@@ -1,0 +1,6 @@
+*.DS_Store
+.vscode
+/.rcds-cache
+__pycache__/
+
+*.swp

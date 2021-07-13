@@ -1,0 +1,6 @@
+*
+!/Dockerfile
+!/bin/run
+!/bin/main
+!/bin/flag.txt
+!/hook.sh

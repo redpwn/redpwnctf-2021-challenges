@@ -1,0 +1,8 @@
+name: round-the-bases
+author: AdnanSlef
+description: |-
+  My flag has been all around the bases. Can you help me get it back?
+provide:
+  - ./round-the-bases
+flag:
+  file: ./flag.txt

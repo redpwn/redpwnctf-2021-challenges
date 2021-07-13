@@ -1,0 +1,47 @@
+name: annaBEL-lee
+author: KyleForkBomb
+description: |-
+  sounds from a kingdom by the sea
+
+  The server does not produce any visible output; please take a close look
+  at what it is sending before asking if the server is broken.
+
+  What exactly _is_ the server sending? Sometimes it makes a sound,
+  sometimes it doesn't. Plotting it on a chart might help you see something.
+
+  It might be helpful to turn your sound on, but you'll probably want to
+  write all of it down since your terminal might not catch everything fast
+  enough—maybe slow it down to get a better idea.
+
+  This is not audio steganography. Apologies if anyone went down that route.
+
+  `{{ nc }}`
+flag:
+  file: ./bin/flag.txt
+
+containers:
+  main:
+    build: .
+    replicas: 2
+    ports:
+      - 5000
+    environment:
+      JAIL_TIME: '60'
+    securityContext:
+      capabilities:
+        drop:
+          - all
+        add:
+          - chown
+          - setuid
+          - setgid
+          - sys_admin
+    k8s:
+      deployment:
+        annotations:
+          container.apparmor.security.beta.kubernetes.io/main: unconfined
+
+expose:
+  main:
+    - target: 5000
+      tcp: 31845
